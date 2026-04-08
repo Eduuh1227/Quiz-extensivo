@@ -105,7 +105,7 @@ const timerElement = document.getElementById("timer");
 
 let currentQuestionIndex = 0;
 let score = 0;
-let timeLeft = 15;
+let timeLeft = 30;
 let timer;
 
 function startQuiz() {
@@ -141,7 +141,7 @@ function showQuestion() {
 
 function resetState() {
   clearInterval(timer);
-  timeLeft = 15;
+  timeLeft = 30;
   timerElement.innerText = `Tempo: ${timeLeft}s`;
   timerElement.classList.remove("warning", "danger");
   nextButton.style.display = "none";
@@ -159,7 +159,7 @@ function updateTimerStyle() {
 
   if (timeLeft <= 5) {
     timerElement.classList.add("danger");
-  } else if (timeLeft <= 10) {
+  } else if (timeLeft <= 15) {
     timerElement.classList.add("warning");
   }
 }
