@@ -102,6 +102,7 @@ const restartButton = document.getElementById("restart-btn");
 const progressBar = document.getElementById("progress-bar");
 const questionCounter = document.getElementById("question-counter");
 const timerElement = document.getElementById("timer");
+const medalElement = document.getElementById("medal");
 
 const soundCorrect = document.getElementById("sound-correct");
 const soundWrong = document.getElementById("sound-wrong");
@@ -246,6 +247,15 @@ function showResult() {
 
   scoreElement.innerText = `Você acertou ${score} de ${questions.length} perguntas.`;
 
+  const medal = getMedal(score, questions.length);
+
+  medalElement.className = `medal-box ${medal.className}`;
+  medalElement.innerHTML = `
+    <span class="medal-emoji">${medal.emoji}</span>
+    <div class="medal-title">${medal.title}</div>
+    <div class="medal-description">${medal.description}</div>
+  `;
+
   if (score === questions.length) {
     messageElement.innerText = "Excelente! Você manda bem em segurança de dados.";
   } else if (score >= 7) {
@@ -254,6 +264,40 @@ function showResult() {
     messageElement.innerText = "Bom resultado, mas ainda dá para melhorar.";
   } else {
     messageElement.innerText = "Vale revisar mais o tema. Segurança de dados é essencial.";
+  }
+}
+
+function getMedal(score, total) {
+  const percentage = (score / total) * 100;
+
+  if (percentage >= 90) {
+    return {
+      className: "gold",
+      emoji: "🥇",
+      title: "Especialista em Segurança",
+      description: "Desempenho excelente. Você domina muito bem o tema."
+    };
+  } else if (percentage >= 70) {
+    return {
+      className: "silver",
+      emoji: "🥈",
+      title: "Avançado",
+      description: "Ótimo resultado. Seu conhecimento está bem acima da média."
+    };
+  } else if (percentage >= 50) {
+    return {
+      className: "bronze",
+      emoji: "🥉",
+      title: "Intermediário",
+      description: "Bom desempenho. Você já tem uma base consistente."
+    };
+  } else {
+    return {
+      className: "beginner",
+      emoji: "📘",
+      title: "Iniciante",
+      description: "Você está começando. Vale revisar o conteúdo e tentar novamente."
+    };
   }
 }
 

@@ -122,6 +122,52 @@ h1 {
   opacity: 0.95;
 }
 
+.medal-box {
+  margin: 20px 0;
+  padding: 18px;
+  border-radius: 14px;
+  text-align: center;
+  background: #1e293b;
+  border: 2px solid #334155;
+}
+
+.medal-emoji {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.medal-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.medal-description {
+  color: #cbd5e1;
+  font-size: 1rem;
+}
+
+.gold {
+  border-color: #facc15;
+  box-shadow: 0 0 15px rgba(250, 204, 21, 0.25);
+}
+
+.silver {
+  border-color: #c0c0c0;
+  box-shadow: 0 0 15px rgba(192, 192, 192, 0.2);
+}
+
+.bronze {
+  border-color: #cd7f32;
+  box-shadow: 0 0 15px rgba(205, 127, 50, 0.2);
+}
+
+.beginner {
+  border-color: #38bdf8;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
 #next-btn,
 #restart-btn {
   margin-top: 25px;
