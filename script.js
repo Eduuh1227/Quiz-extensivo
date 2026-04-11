@@ -103,10 +103,22 @@ const progressBar = document.getElementById("progress-bar");
 const questionCounter = document.getElementById("question-counter");
 const timerElement = document.getElementById("timer");
 
+const soundCorrect = document.getElementById("sound-correct");
+const soundWrong = document.getElementById("sound-wrong");
+const soundWarning = document.getElementById("sound-warning");
+
 let currentQuestionIndex = 0;
 let score = 0;
-let timeLeft = 30;
+let timeLeft = 15;
 let timer;
+let warningPlayed = false;
+
+function playSound(sound) {
+  sound.currentTime = 0;
+  sound.play().catch(() => {
+    // evita erro caso o navegador bloqueie autoplay
+  });
+}
 
 function startQuiz() {
   currentQuestionIndex = 0;
@@ -141,7 +153,8 @@ function showQuestion() {
 
 function resetState() {
   clearInterval(timer);
-  timeLeft = 30;
+  timeLeft = 20;
+  warningPlayed = false;
   timerElement.innerText = `Tempo: ${timeLeft}s`;
   timerElement.classList.remove("warning", "danger");
   nextButton.style.display = "none";
@@ -159,7 +172,7 @@ function updateTimerStyle() {
 
   if (timeLeft <= 5) {
     timerElement.classList.add("danger");
-  } else if (timeLeft <= 15) {
+  } else if (timeLeft <= 10) {
     timerElement.classList.add("warning");
   }
 }
@@ -172,9 +185,15 @@ function startTimer() {
     timerElement.innerText = `Tempo: ${timeLeft}s`;
     updateTimerStyle();
 
+    if (timeLeft === 5 && !warningPlayed) {
+      playSound(soundWarning);
+      warningPlayed = true;
+    }
+
     if (timeLeft <= 0) {
       clearInterval(timer);
       timerElement.innerText = "Tempo esgotado!";
+      playSound(soundWrong);
       disableAnswers();
       showCorrectAnswer();
       nextButton.style.display = "block";
@@ -191,8 +210,10 @@ function selectAnswer(e) {
   if (isCorrect) {
     selectedBtn.classList.add("correct");
     score++;
+    playSound(soundCorrect);
   } else {
     selectedBtn.classList.add("wrong");
+    playSound(soundWrong);
   }
 
   showCorrectAnswer();

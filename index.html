@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quiz - Segurança de Dados</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="container">
     <div class="quiz-box">
@@ -18,7 +20,7 @@
         </div>
         <div class="status-info">
           <span id="question-counter">Pergunta 1/10</span>
-          <span id="timer">Tempo: 15s</span>
+          <span id="timer">Tempo: 30s</span>
         </div>
       </div>
 
@@ -37,6 +39,11 @@
     </div>
   </div>
 
+  <audio id="sound-correct" src="sounds/certo.mp3"></audio>
+  <audio id="sound-wrong" src="sounds/erro.mp3"></audio>
+  <audio id="sound-warning" src="sounds/warning.mp3"></audio>
+
   <script src="script.js"></script>
 </body>
+
 </html>
